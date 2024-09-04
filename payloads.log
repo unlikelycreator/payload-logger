@@ -1,0 +1,72 @@
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 2,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 2,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 555,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 555,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 555,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 555,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 555,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
+{
+  "method": "GET",
+  "url": "http://202.0.103.41:3007/api/WorkFlow/GetWorkFlowStatus",
+  "params": {
+    "userId": 555,
+    "ppcode": "",
+    "fycode": ""
+  }
+}
