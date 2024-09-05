@@ -85,6 +85,18 @@ app.post('/log-payload', async (req, res) => {
     }
 });
 
+app.get('/fetch-payloads', async (req, res) => {
+    try {
+        const database = client.db('Payload-logger');
+        const collection = database.collection('Payloads');
+        const payloads = await collection.find({}).toArray();
+        res.status(200).json(payloads);
+    } catch (err) {
+        console.error('Error fetching payloads from MongoDB:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 // Start the server and connect to MongoDB
 const PORT = 5000;
 app.listen(PORT, () => {
