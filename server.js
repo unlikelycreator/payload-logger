@@ -1,7 +1,8 @@
 const express = require('express');
-const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { MongoClient } = require('mongodb');
+
 const app = express();
 
 // Middleware to parse JSON payloads
@@ -15,25 +16,44 @@ app.use(cors({
     maxAge: 86400
 }));
 
-app.post('/log-payload', (req, res) => {
+// MongoDB connection string
+const mongoUri = 'mongodb+srv://hritikpawardev:pawar2700@bookkeeper.hv4oh.mongodb.net/?retryWrites=true&w=majority&appName=BookKeeper';
+const client = new MongoClient(mongoUri);
+
+// Connect to MongoDB
+async function connectToDatabase() {
+    try {
+        await client.connect();
+        console.log("Connected successfully to MongoDB");
+    } catch (err) {
+        console.error("MongoDB connection error:", err);
+        process.exit(1); // Exit the app if unable to connect
+    }
+}
+
+// Route to log payload
+app.post('/log-payload', async (req, res) => {
     const payload = req.body;
 
-    // Convert the payload to a string
-    const payloadString = JSON.stringify(payload, null, 2);
+    try {
+        // Access the database and collection
+        const database = client.db('Payload-logger');
+        const collection = database.collection('Payloads');
 
-    // Log the payload to a file
-    fs.appendFile('payloads.log', payloadString + '\n', (err) => {
-        if (err) {
-            console.error('Error writing to log file', err);
-            return res.status(500).send('Internal Server Error');
-        }
-        console.log('Payload logged successfully');
+        // Insert the payload into the collection
+        const result = await collection.insertOne(payload);
+
+        console.log('Payload logged to MongoDB:', result.insertedId);
         res.status(200).send('Payload received and logged');
-    });
+    } catch (err) {
+        console.error('Error inserting payload into MongoDB:', err);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
-// Start the server
+// Start the server and connect to MongoDB
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    connectToDatabase();  // Connect to MongoDB when the server starts
 });
